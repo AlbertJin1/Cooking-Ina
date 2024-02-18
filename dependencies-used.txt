@@ -5,3 +5,23 @@ npm install react-native-screens react-native-safe-area-context
 npm install @react-navigation/native-stack
 
 npm install @react-native-firebase/app
+
+npm install @react-native-firebase/firestore
+
+npm install firebase
+
+npm install @expo-google-fonts/poppins
+
+npm install @react-navigation/stack
+
+npm i react-native-vector-icons
+
+npm i npm i expo-splash-screen
+
+npm i react-native-safe-area-view
+
+npm install react-native-safe-area-context
+
+npx expo-doctor@latest
+
+npm install -g eas-cli
