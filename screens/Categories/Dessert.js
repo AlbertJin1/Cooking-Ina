@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { collection, query, where, onSnapshot, getFirestore } from 'firebase/firestore';
+import { getStorage, ref, getDownloadURL } from 'firebase/storage';
 import { View, Text, ScrollView, Image, TouchableOpacity, } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons, AntDesign } from 'react-native-vector-icons';
@@ -6,10 +8,34 @@ import RecipeCategory from '../../styles/RecipeCategoryStyles';
 
 const DessertsScreen = () => {
     const navigation = useNavigation();
-    const [pressedRecipes, setPressedRecipes] = useState([]); // New state
+    const [recipes, setRecipes] = useState([]);
+    const storage = getStorage();
 
+    useEffect(() => {
+        const fetchRecipes = async () => {
+            try {
+                const db = getFirestore();
+                const q = query(collection(db, 'recipes'), where('recipeCategory', '==', 'Dessert'));
 
-    const recommendedRecipes = [
+                const unsubscribe = onSnapshot(q, (snapshot) => {
+                    const fetchedRecipes = [];
+                    snapshot.forEach((doc) => {
+                        const recipeData = doc.data();
+                        fetchedRecipes.push({ id: doc.id, ...recipeData });
+                    });
+                    setRecipes(fetchedRecipes);
+                });
+
+                return () => unsubscribe();
+            } catch (error) {
+                console.error('Error fetching recipes:', error);
+            }
+        };
+
+        fetchRecipes();
+    }, []);
+
+    const staticRecipes = [
         { name: 'Sweet Macaroni Salad', time: '20min', calories: 738, image: require('../../img/category-recipe/DESSERT/macaroni.jpg') },
         { name: 'Bibingka', time: '45min', calories: 734, image: require('../../img/category-recipe/DESSERT/Bibingka.png') },
         { name: 'Banana Bread', time: '1hr 10min', calories: 359, image: require('../../img/category-recipe/DESSERT/BananaBread.png') },
@@ -17,45 +43,30 @@ const DessertsScreen = () => {
         { name: 'Fruit Cocktail Float', time: '22min', calories: 307, image: require('../../img/category-recipe/DESSERT/FruitCocktailFloat.png') },
     ];
 
-    const handleHeartPress = (recipeName) => {
-        setPressedRecipes((prevPressedRecipes) => {
-            if (prevPressedRecipes.includes(recipeName)) {
-                // Recipe is already pressed, remove it
-                return prevPressedRecipes.filter((name) => name !== recipeName);
-            } else {
-                // Recipe is not pressed, add it
-                return [...prevPressedRecipes, recipeName];
+    const navigateToRecipe = async (recipe) => {
+        try {
+            if (recipe && recipe.id) {
+                const imageUrl = recipe.image ? recipe.image : await fetchImage(recipe.imageURL);
+                navigation.navigate('RecipeTemplate', { recipeId: recipe.id, recipeCategory: 'Dessert', imageURL: imageUrl });
+            } else if (recipe && recipe.name) {
+                navigation.navigate('DessertNav', {
+                    screen: recipe.name,
+                });
             }
-        });
-    };
-
-    const navigateToRecipe = (recipeName) => {
-        navigation.navigate('DessertNav', {
-            screen: recipeName,
-        });
-    };
-
-    const handleRecipePress = (recipeName) => {
-        switch (recipeName) {
-            case 'Sweet Macaroni Salad':
-                navigateToRecipe('Sweet Macaroni Salad');
-                break;
-            case 'Bibingka':
-                navigateToRecipe('Bibingka');
-                break;
-            case 'Banana Bread':
-                navigateToRecipe('Banana Bread');
-                break;
-            case 'Buko Pandan':
-                navigateToRecipe('Buko Pandan');
-                break;
-            case 'Fruit Cocktail Float':
-                navigateToRecipe('Fruit Cocktail Float');
-                break;
-            default:
-                break;
+        } catch (error) {
+            console.error('Error navigating to recipe:', error);
         }
     };
+
+    const fetchImage = async (imageUrl) => {
+        const imageRef = ref(storage, imageUrl);
+        return await getDownloadURL(imageRef);
+    };
+
+    const handleRecipePress = (recipe) => {
+        navigateToRecipe(recipe);
+    };
+
 
     return (
         <View style={RecipeCategory.backgroundContainer}>
@@ -71,35 +82,17 @@ const DessertsScreen = () => {
                     </View>
 
 
-                    {recommendedRecipes.map((recipe) => (
+                    {[...staticRecipes, ...recipes].map((recipe) => (
                         <TouchableOpacity
-                            key={recipe.name}
+                            key={recipe.id || recipe.name}
                             style={RecipeCategory.recipeContainer}
-                            onPress={() => handleRecipePress(recipe.name)}  // Pass the recipe name to the handler
+                            onPress={() => handleRecipePress(recipe)}
                         >
-                            <Image source={recipe.image} style={RecipeCategory.recipeImage} />
+                            <Image source={recipe.image || { uri: recipe.imageURL }} style={RecipeCategory.recipeImage} />
                             <View style={RecipeCategory.recipeDetailsContainer}>
                                 <View style={RecipeCategory.recipeInfoContainer}>
-                                    <Text style={RecipeCategory.recipeName}>{recipe.name}</Text>
-                                    <View style={RecipeCategory.recipeInfo}>
-                                        <View style={RecipeCategory.recipeInfoItem}>
-                                            <Ionicons name="timer-outline" style={RecipeCategory.recipeIcon} />
-                                            <Text style={RecipeCategory.recipeTime}>{recipe.time}</Text>
-                                            <Text style={RecipeCategory.bulletIcon}>•</Text>
-                                        </View>
-                                        <View style={RecipeCategory.recipeInfoItem}>
-                                            <Ionicons name="flame-outline" style={RecipeCategory.recipeIcon} />
-                                            <Text style={RecipeCategory.recipeCalories}>{recipe.calories}kcal</Text>
-                                        </View>
-                                    </View>
+                                    <Text style={RecipeCategory.recipeName}>{recipe.name || recipe.recipeName}</Text>
                                 </View>
-                                <TouchableOpacity onPress={() => handleHeartPress(recipe.name)}>
-                                    <Ionicons
-                                        name={pressedRecipes.includes(recipe.name) ? 'heart' : 'heart-outline'}
-                                        style={[RecipeCategory.recipeIcon, RecipeCategory.heartIcon]}
-                                        color={pressedRecipes.includes(recipe.name) ? '#FFBA00' : 'black'}
-                                    />
-                                </TouchableOpacity>
                             </View>
                         </TouchableOpacity>
                     ))}

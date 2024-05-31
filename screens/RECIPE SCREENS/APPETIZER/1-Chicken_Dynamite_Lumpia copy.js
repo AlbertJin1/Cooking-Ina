@@ -18,13 +18,13 @@ const Chicken_Dynamite_Lumpia = ({ navigation }) => {
                                     <TouchableOpacity onPress={() => navigation.goBack()}>
                                         <AntDesign name="leftcircle" size={42} color="#FFBA00" />
                                     </TouchableOpacity>
-                                    <TouchableOpacity onPress={() =>
+                                    {/* <TouchableOpacity onPress={() =>
                                         Alert.alert('Feature Not Available', 'Feature will be available soon.')
                                     }>
                                         <View style={recipeStyles.heartIconBackground}>
                                             <Ionicons name="heart" size={25} color="black" />
                                         </View>
-                                    </TouchableOpacity>
+                                    </TouchableOpacity> */}
                                 </View>
                                 <Text style={recipeStyles.recipeName}>Chicken Dynamite Lumpia</Text>
                                 <View style={recipeStyles.recipeImageContainer}>

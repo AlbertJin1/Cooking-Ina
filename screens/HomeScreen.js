@@ -81,16 +81,16 @@ const HomeScreen = () => {
 
     const categoriesSets = [
         [
+            { name: 'Main', icon: require('../img/categories/main-course.png') },
+            { name: 'Appetizer', icon: require('../img/categories/appetizer.png') },
+            { name: 'Dessert', icon: require('../img/categories/cake.png') },
+            { name: 'Beverage', icon: require('../img/categories/beverage.png') },
+        ],
+        [
             { name: 'Breakfast', icon: require('../img/categories/croissant.png') },
             { name: 'Lunch', icon: require('../img/categories/tom-yum.png') },
             { name: 'Dinner', icon: require('../img/categories/cover.png') },
-            { name: 'Appetizer', icon: require('../img/categories/appetizer.png') },
-        ],
-        [
-            { name: 'Dessert', icon: require('../img/categories/cake.png') },
             { name: 'Bread', icon: require('../img/categories/bread.png') },
-            { name: 'Main', icon: require('../img/categories/main-course.png') },
-            { name: 'Beverage', icon: require('../img/categories/beverage.png') },
         ],
     ];
 
@@ -100,7 +100,7 @@ const HomeScreen = () => {
         { name: 'Filipino Style Beef Steak', time: '1 hr', calories: 729, image: require('../img/recipes/bistek.jpg') },
         { name: 'Tortang Talong', time: '12 min', calories: 187, image: require('../img/recipes/talong.png') },
         { name: 'Sweet Macaroni Salad', time: '10 min', calories: 738, image: require('../img/recipes/macaroni.jpg') },
-        { name: 'Pandesal', time: '15 min', calories: 73, image: require('../img/recipes/pandesal.jpg') },
+        // { name: 'Pandesal', time: '15 min', calories: 73, image: require('../img/recipes/pandesal.jpg') },
 
     ];
 
@@ -142,27 +142,35 @@ const HomeScreen = () => {
         switch (categoryName) {
             case 'Breakfast':
                 navigateToCategory('Breakfast');
+                // Alert.alert('Feature Not Available', 'Feature will be available soon.')
                 break;
             case 'Lunch':
                 navigateToCategory('Lunch');
+                // Alert.alert('Feature Not Available', 'Feature will be available soon.')
                 break;
             case 'Dinner':
                 navigateToCategory('Dinner');
+                // Alert.alert('Feature Not Available', 'Feature will be available soon.')
                 break;
             case 'Appetizer':
                 navigateToCategory('Appetizer');
+                // Alert.alert('Feature Not Available', 'Feature will be available soon.')
                 break;
             case 'Dessert':
                 navigateToCategory('Desserts');
+                // Alert.alert('Feature Not Available', 'Feature will be available soon.')
                 break;
             case 'Bread':
                 navigateToCategory('Bread');
+                // Alert.alert('Feature Not Available', 'Feature will be available soon.')
                 break;
             case 'Main':
                 navigateToCategory('Main');
+                // Alert.alert('Feature Not Available', 'Feature will be available soon.')
                 break;
             case 'Beverage':
                 navigateToCategory('Beverage');
+                // Alert.alert('Feature Not Available', 'Feature will be available soon.')
                 break;
             default:
                 break;
@@ -214,20 +222,20 @@ const HomeScreen = () => {
                                     color="black"
                                 />
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={() => Alert.alert('Feature Not Available', 'Feature will be available soon.')}>
+                            {/* <TouchableOpacity onPress={() => Alert.alert('Feature Not Available', 'Feature will be available soon.')}>
                                 <Ionicons name="search" size={35} color="#1E1E1E" />
-                            </TouchableOpacity>
+                            </TouchableOpacity> */}
                         </View>
                         <Text style={homeStyles.greetingText}>Hello, {firstName}!</Text>
                         <Text style={[homeStyles.whatdoyou]}>What do you want to cook today?</Text>
                         <View style={homeStyles.categoriesContainer}>
                             <Text style={homeStyles.categoriesTitle}>Categories</Text>
-                            <TouchableOpacity onPress={handlePrevSet}>
+                            {/* <TouchableOpacity onPress={handlePrevSet}>
                                 <Ionicons name="arrow-back" size={25} color="#1E1E1E" style={homeStyles.arrowButton} />
                             </TouchableOpacity>
                             <TouchableOpacity onPress={handleNextSet}>
                                 <Ionicons name="arrow-forward" size={25} color="#1E1E1E" />
-                            </TouchableOpacity>
+                            </TouchableOpacity> */}
                         </View>
                         <View style={homeStyles.categories1Container}>
                             {categoriesSets[currentSet - 1].map((category) => (
@@ -245,12 +253,6 @@ const HomeScreen = () => {
                         </View>
                         <View style={homeStyles.recommendedRecipesContainer}>
                             <Text style={homeStyles.recommendedRecipesTitle}>Recommended Recipes</Text>
-                            <TouchableOpacity onPress={() =>
-                                // navigation.navigate('ViewAllRecipes')
-                                console.log('VIEW ALL GOODS')
-                            }>
-                                <Text style={homeStyles.viewAllText}>View All &gt;</Text>
-                            </TouchableOpacity>
                         </View>
                         {recommendedRecipes.map((recipe) => (
                             <TouchableOpacity
@@ -262,7 +264,7 @@ const HomeScreen = () => {
                                 <View style={homeStyles.recipeDetailsContainer}>
                                     <View style={homeStyles.recipeInfoContainer}>
                                         <Text style={homeStyles.recipeName}>{recipe.name}</Text>
-                                        <View style={homeStyles.recipeInfo}>
+                                        {/* <View style={homeStyles.recipeInfo}>
                                             <View style={homeStyles.recipeInfoItem}>
                                                 <Ionicons name="timer-outline" style={homeStyles.recipeIcon} />
                                                 <Text style={homeStyles.recipeTime}>{recipe.time}</Text>
@@ -272,15 +274,15 @@ const HomeScreen = () => {
                                                 <Ionicons name="flame-outline" style={homeStyles.recipeIcon} />
                                                 <Text style={homeStyles.recipeCalories}>{recipe.calories}kcal</Text>
                                             </View>
-                                        </View>
+                                        </View> */}
                                     </View>
-                                    <TouchableOpacity onPress={() => handleHeartPress(recipe.name)}>
+                                    {/* <TouchableOpacity onPress={() => handleHeartPress(recipe.name)}>
                                         <Ionicons
                                             name={pressedRecipes.includes(recipe.name) ? 'heart' : 'heart-outline'}
                                             style={[homeStyles.recipeIcon, homeStyles.heartIcon]}
                                             color={pressedRecipes.includes(recipe.name) ? '#FFBA00' : 'black'}
                                         />
-                                    </TouchableOpacity>
+                                    </TouchableOpacity> */}
                                 </View>
                             </TouchableOpacity>
                         ))}

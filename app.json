@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "Cooking Ina",
+    "name": "Cooking Ina WIP",
     "slug": "Cooking-Ina",
-    "version": "2.0.0",
+    "version": "2.0.3",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -29,7 +29,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "1b061a70-0213-403a-b756-46e0bda3dea5"
+        "projectId": "001ed9cb-b93b-49ae-914c-f9ef947c19a3"
       }
     }
   }

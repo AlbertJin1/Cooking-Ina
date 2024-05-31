@@ -22,9 +22,9 @@ const BabyBackRibs = ({ navigation }) => {
                                         // navigation.goBack()
                                         console.log('PERFECT')
                                     }>
-                                        <View style={recipeStyles.heartIconBackground}>
+                                        {/* <View style={recipeStyles.heartIconBackground}>
                                             <Ionicons name="heart" size={25} color="black" />
-                                        </View>
+                                        </View> */}
                                     </TouchableOpacity>
                                 </View>
                                 <Text style={recipeStyles.recipeName}>Baby Back Ribs</Text>

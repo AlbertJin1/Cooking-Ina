@@ -13,6 +13,8 @@ import HomeRecipeNavigator from "./screens/Navigations/HomeRecipeNavigator";
 
 import CategoriesScreen from "./screens/Navigations/CategoryNavigator";
 
+import RecipeTemplate from "./screens/RecipeTemplate";
+
 
 const Stack = createNativeStackNavigator();
 
@@ -53,6 +55,11 @@ function App() {
         <Stack.Screen
           name="CategoryScreens"
           component={CategoriesScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="RecipeTemplate"
+          component={RecipeTemplate}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

@@ -14,6 +14,7 @@ import {
     getFirestore,
     updateDoc,
     getDoc,
+    onSnapshot,
 } from 'firebase/firestore';
 
 const UserProfileScreen = () => {
@@ -23,6 +24,7 @@ const UserProfileScreen = () => {
 
     const user = auth.currentUser;
 
+    const [profilePicture, setProfilePicture] = useState('https://bootdey.com/img/Content/avatar/avatar1.png');
     const [status, setStatus] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -30,12 +32,14 @@ const UserProfileScreen = () => {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [address, setAddress] = useState('');
     const [bio, setBio] = useState('');
+    const [isBioEdited, setIsBioEdited] = useState(false);
 
 
     const [editedFirstName] = useState('');
     const [editedLastName] = useState('');
     const [editedBio, setEditedBio] = useState('');
 
+    // Load user data function...
     const loadUserData = async () => {
         if (user) {
             const userDocRef = doc(db, 'users', user.uid);
@@ -44,14 +48,14 @@ const UserProfileScreen = () => {
                 const docSnapshot = await getDoc(userDocRef);
                 if (docSnapshot.exists()) {
                     const userData = docSnapshot.data();
-
                     setFirstName(userData.firstName || '');
                     setLastName(userData.lastName || '');
                     setEmail(userData.email);
-                    setPhoneNumber(userData.phoneNumber);
-                    setAddress(userData.address);
+                    setPhoneNumber(userData.phoneNumber || '');
+                    setAddress(userData.address || '');
                     setBio(userData.bio || '');
-                    setStatus(userData.status);
+                    setStatus(userData.status || '');
+                    setProfilePicture(userData.profilePicture || 'https://bootdey.com/img/Content/avatar/avatar1.png');
                 }
             } catch (error) {
                 console.error('Error loading user data:', error);
@@ -61,6 +65,30 @@ const UserProfileScreen = () => {
 
     useEffect(() => {
         loadUserData();
+    }, [user]);
+
+    useEffect(() => {
+        const unsubscribe = () => {
+            if (user) {
+                const userDocRef = doc(db, 'users', user.uid);
+                const unsubscribe = onSnapshot(userDocRef, (doc) => {
+                    if (doc.exists()) {
+                        const userData = doc.data();
+                        setFirstName(userData.firstName || '');
+                        setLastName(userData.lastName || '');
+                        setEmail(userData.email);
+                        setPhoneNumber(userData.phoneNumber || '');
+                        setAddress(userData.address || '');
+                        setBio(userData.bio || '');
+                        setStatus(userData.status || '');
+                        setProfilePicture(userData.profilePicture || 'https://bootdey.com/img/Content/avatar/avatar1.png');
+                    }
+                });
+                return unsubscribe;
+            }
+        };
+
+        return unsubscribe();
     }, [user]);
 
     const handleSaveProfile = async () => {
@@ -166,7 +194,7 @@ const UserProfileScreen = () => {
                         <Text style={userProfileStyles.screenTitle}>Edit Profile</Text>
                     </View>
                     <Image
-                        source={require('../img/Profile/power.png')}
+                        source={{ uri: profilePicture }}
                         style={userProfileStyles.profilePic}
                     />
                     <Text style={userProfileStyles.name}>
@@ -183,8 +211,11 @@ const UserProfileScreen = () => {
                     <TextInput
                         style={[userProfileStyles.input, { height: 129 }]}
                         multiline={true}
-                        value={editedBio || bio}
-                        onChangeText={(text) => setEditedBio(text)}
+                        value={isBioEdited ? editedBio : bio}
+                        onChangeText={(text) => {
+                            setEditedBio(text);
+                            setIsBioEdited(true);
+                        }}
                         editable={user ? true : false}
                     />
                     <Text style={[userProfileStyles.label, userProfileStyles.textName]}>First Name</Text>

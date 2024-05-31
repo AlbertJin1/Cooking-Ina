@@ -18,14 +18,14 @@ const Lumpiang_Shanghai = ({ navigation }) => {
                                     <TouchableOpacity onPress={() => navigation.goBack()}>
                                         <AntDesign name="leftcircle" size={42} color="#FFBA00" />
                                     </TouchableOpacity>
-                                    <TouchableOpacity onPress={() =>
+                                    {/* <TouchableOpacity onPress={() =>
                                         // navigation.goBack()
                                         console.log('PERFECT')
                                     }>
                                         <View style={recipeStyles.heartIconBackground}>
                                             <Ionicons name="heart" size={25} color="black" />
                                         </View>
-                                    </TouchableOpacity>
+                                    </TouchableOpacity> */}
                                 </View>
                                 <Text style={recipeStyles.recipeName}>Lumpiang Shanghai</Text>
                                 <View style={recipeStyles.recipeImageContainer}>

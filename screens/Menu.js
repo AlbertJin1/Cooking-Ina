@@ -22,6 +22,7 @@ import {
     getFirestore,
     getDoc,
     deleteDoc,
+    onSnapshot,
 } from 'firebase/firestore';
 
 const Menu = () => {
@@ -34,28 +35,28 @@ const Menu = () => {
         firstName: '',
         lastName: '',
         email: '',
+        profilePicture: 'https://bootdey.com/img/Content/avatar/avatar1.png' // Default profile picture
     });
 
+    useEffect(() => {
+        let unsubscribe = () => { }; // Initialize unsubscribe function
 
-
-    const loadUserData = async () => {
         if (user) {
             const userDocRef = doc(db, 'users', user.uid);
 
-            try {
-                const docSnapshot = await getDoc(userDocRef);
+            // Set up real-time listener for user document
+            unsubscribe = onSnapshot(userDocRef, (docSnapshot) => {
                 if (docSnapshot.exists()) {
                     const userData = docSnapshot.data();
                     setUserData(userData);
                 }
-            } catch (error) {
-                console.error('Error loading user data:', error);
-            }
+            });
         }
-    };
 
-    useEffect(() => {
-        loadUserData();
+        return () => {
+            // Unsubscribe from real-time listener when component unmounts
+            unsubscribe();
+        };
     }, [user]);
 
     const handleLogout = () => {
@@ -112,9 +113,9 @@ const Menu = () => {
         navigation.navigate('UserProfile');
     };
 
-    const handleFavoritesPress = () => {
-        Alert.alert('Feature Not Available', 'Feature will be available soon.');
-    };
+    // const handleFavoritesPress = () => {
+    //     Alert.alert('Feature Not Available', 'Feature will be available soon.');
+    // };
 
     const handleSettingsPress = () => {
         navigation.navigate('Settings');
@@ -163,7 +164,7 @@ const Menu = () => {
 
                 {/* Profile Pic, Name, and Email */}
                 <View style={menuStyles.profileContainer}>
-                    <Image source={require('../img/Profile/power.png')} style={menuStyles.profilePic} />
+                    <Image source={{ uri: userData.profilePicture }} style={menuStyles.profilePic} />
                     <Text style={menuStyles.name}>
                         {user ? `${userData.firstName} ${userData.lastName}` : 'No user logged'}
                     </Text>
@@ -189,15 +190,18 @@ const Menu = () => {
                                     handleLogout();
                                 } else if (item.title === 'Profile') {
                                     handleProfilePress();
-                                } else if (item.title === 'Favorites') {
-                                    handleFavoritesPress();
-                                } else if (item.title === 'Settings & Privacy') {
+                                }
+                                // else if (item.title === 'Favorites') {
+                                //     handleFavoritesPress();
+                                // } 
+                                else if (item.title === 'Settings & Privacy') {
                                     handleSettingsPress();
                                 } else if (item.title === 'About') {
                                     handleHelpPress();
-                                } else if (item.title === 'Add Recipe') {
-                                    Alert.alert('Feature Not Yet Available', 'Feature will be available in future updates.');
                                 }
+                                // else if (item.title === 'Add Recipe') {
+                                //     Alert.alert('Feature Not Yet Available', 'Feature will be available in future updates.');
+                                // }
                                 else {
                                 }
                             }}
@@ -220,10 +224,10 @@ const Menu = () => {
 
 const menuItems = [
     { title: 'Profile', icon: 'user' },
-    { title: 'Favorites', icon: 'heart' },
+    // { title: 'Favorites', icon: 'heart' },
     { title: 'Settings & Privacy', icon: 'cog' },
     { title: 'About', icon: 'question-circle' },
-    { title: 'Add Recipe', icon: 'plus' },
+    // { title: 'Add Recipe', icon: 'plus' },
     { title: 'Delete Account', icon: 'trash-alt' },
     { title: 'Log Out', icon: 'sign-out-alt' },
 ];

@@ -18,14 +18,7 @@ const Calamansi_Juice = ({ navigation }) => {
                                     <TouchableOpacity onPress={() => navigation.goBack()}>
                                         <AntDesign name="leftcircle" size={42} color="#FFBA00" />
                                     </TouchableOpacity>
-                                    <TouchableOpacity onPress={() =>
-                                        // navigation.goBack()
-                                        Alert.alert('Feature Not Available', 'Feature will be available soon.')
-                                    }>
-                                        <View style={recipeStyles.heartIconBackground}>
-                                            <Ionicons name="heart" size={25} color="black" />
-                                        </View>
-                                    </TouchableOpacity>
+                                    
                                 </View>
                                 <Text style={recipeStyles.recipeName}>Calamansi Juice</Text>
                                 <View style={recipeStyles.recipeImageContainer}>

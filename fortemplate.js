@@ -1,10 +1,46 @@
+return (
+    <View style={RecipeCategory.backgroundContainer}>
+        <ScrollView contentContainerStyle={RecipeCategory.scrollView}>
+
+            <View style={RecipeCategory.container}>
+
+                <View style={RecipeCategory.titleContainer}>
+                    <TouchableOpacity onPress={() => navigation.goBack()} style={RecipeCategory.goBackButton}>
+                        <AntDesign name="leftcircle" size={46} color="#6D9773" />
+                    </TouchableOpacity>
+                    <Text style={RecipeCategory.screenTitle}>Main Course</Text>
+                </View>
+
+
+                {recommendedRecipes.map((recipe) => (
+                    <TouchableOpacity
+                        key={recipe.name}
+                        style={RecipeCategory.recipeContainer}
+                        onPress={() => handleRecipePress(recipe.name)}  // Pass the recipe name to the handler
+                    >
+                        <Image source={recipe.image} style={RecipeCategory.recipeImage} />
+                        <View style={RecipeCategory.recipeDetailsContainer}>
+                            <View style={RecipeCategory.recipeInfoContainer}>
+                                <Text style={RecipeCategory.recipeName}>{recipe.name}</Text>
+                                
+                            </View>
+                            
+                        </View>
+                    </TouchableOpacity>
+                ))}
+            </View>
+        </ScrollView>
+    </View>
+);
+
+
 import React from 'react';
 import { View, Text, ScrollView, Image, TouchableOpacity, Alert, StatusBar } from 'react-native';
 import { Ionicons, AntDesign, FontAwesome } from 'react-native-vector-icons';
 
-import recipeStyles from '../../styles/RecipeScreenStyles';
+import recipeStyles from '../../../styles/RecipeScreenStyles';
 
-const Lumpiang_Shanghai = ({ navigation }) => {
+const BabyBackRibs = ({ navigation }) => {
     return (
         <React.Fragment>
             <StatusBar backgroundColor="#0C3B2E" />
@@ -18,28 +54,28 @@ const Lumpiang_Shanghai = ({ navigation }) => {
                                     <TouchableOpacity onPress={() => navigation.goBack()}>
                                         <AntDesign name="leftcircle" size={42} color="#FFBA00" />
                                     </TouchableOpacity>
-                                    {/* <TouchableOpacity onPress={() =>
+                                    <TouchableOpacity onPress={() =>
                                         // navigation.goBack()
-                                        Alert.alert('Feature Not Available', 'Feature will be available soon.')
+                                        console.log('PERFECT')
                                     }>
-                                        <View style={recipeStyles.heartIconBackground}>
+                                        {/* <View style={recipeStyles.heartIconBackground}>
                                             <Ionicons name="heart" size={25} color="black" />
-                                        </View>
-                                    </TouchableOpacity> */}
+                                        </View> */}
+                                    </TouchableOpacity>
                                 </View>
-                                <Text style={recipeStyles.recipeName}>Lumpiang Shanghai</Text>
+                                <Text style={recipeStyles.recipeName}>Baby Back Ribs</Text>
                                 <View style={recipeStyles.recipeImageContainer}>
-                                    <Image source={require('../../img/recipes/lumpia.jpg')} style={recipeStyles.recipeImage} />
+                                    <Image source={require('../../../img/category-recipe/MAIN/BabyBackRibs.png')} style={recipeStyles.recipeImage} />
                                 </View>
                             </View>
                             <View style={recipeStyles.detailsContainer}>
                                 <View style={recipeStyles.detailItem}>
                                     <Ionicons name="time-outline" style={recipeStyles.detailIcon} />
-                                    <Text style={recipeStyles.detailText}>8 mins</Text>
+                                    <Text style={recipeStyles.detailText}>2 hr</Text>
                                 </View>
                                 <View style={recipeStyles.detailItem}>
                                     <Ionicons name="flame-outline" style={recipeStyles.detailIcon} />
-                                    <Text style={recipeStyles.detailText}>619kcal</Text>
+                                    <Text style={recipeStyles.detailText}>317kcal</Text>
                                 </View>
                                 <View style={recipeStyles.detailItem}>
                                     <Ionicons name="person-outline" style={recipeStyles.detailIcon} />
@@ -55,40 +91,34 @@ const Lumpiang_Shanghai = ({ navigation }) => {
                             </View>
                             <View style={recipeStyles.listingreContainer}>
                                 <Text style={recipeStyles.listItem}>
-                                    <FontAwesome name="circle" size={18} color="#FFBA00" /> 1.13 kg ground pork
+                                    <FontAwesome name="circle" size={18} color="#FFBA00" /> 1.36 kg pork back ribs
                                 </Text>
                                 <Text style={recipeStyles.listItem}>
-                                    <FontAwesome name="circle" size={18} color="#FFBA00" /> 1 piece Knorr Pork Cube
+                                    <FontAwesome name="circle" size={18} color="#FFBA00" /> 118.29 ml soy sauce
                                 </Text>
                                 <Text style={recipeStyles.listItem}>
-                                    <FontAwesome name="circle" size={18} color="#FFBA00" /> 50 pieces lumpia wrapper
+                                    <FontAwesome name="circle" size={18} color="#FFBA00" /> 236.59 ml vinegar
                                 </Text>
                                 <Text style={recipeStyles.listItem}>
-                                    <FontAwesome name="circle" size={18} color="#FFBA00" /> 96 g carrot minced
+                                    <FontAwesome name="circle" size={18} color="#FFBA00" /> 55 g brown sugar
                                 </Text>
                                 <Text style={recipeStyles.listItem}>
-                                    <FontAwesome name="circle" size={18} color="#FFBA00" /> 2 piece onions minced
+                                    <FontAwesome name="circle" size={18} color="#FFBA00" /> 1 head garlic minced
                                 </Text>
                                 <Text style={recipeStyles.listItem}>
-                                    <FontAwesome name="circle" size={18} color="#FFBA00" /> 2 pieces eggs
+                                    <FontAwesome name="circle" size={18} color="#FFBA00" /> 2.2 g peppercorns
                                 </Text>
                                 <Text style={recipeStyles.listItem}>
-                                    <FontAwesome name="circle" size={18} color="#FFBA00" /> 15 g parsley minced
+                                    <FontAwesome name="circle" size={18} color="#FFBA00" /> 2 bay leaves
                                 </Text>
                                 <Text style={recipeStyles.listItem}>
-                                    <FontAwesome name="circle" size={18} color="#FFBA00" /> 0.5 teaspoon ground pepper
+                                    <FontAwesome name="circle" size={18} color="#FFBA00" /> 30 g panko breadcrumbs
                                 </Text>
                                 <Text style={recipeStyles.listItem}>
-                                    <FontAwesome name="circle" size={18} color="#FFBA00" /> 1 teaspoon salt
+                                    <FontAwesome name="circle" size={18} color="#FFBA00" /> 169.5 g honey
                                 </Text>
                                 <Text style={recipeStyles.listItem}>
-                                    <FontAwesome name="circle" size={18} color="#FFBA00" /> 1 teaspoon Sesame oil
-                                </Text>
-                                <Text style={recipeStyles.listItem}>
-                                    <FontAwesome name="circle" size={18} color="#FFBA00" /> 1 teaspoon garlic powder
-                                </Text>
-                                <Text style={recipeStyles.listItem}>
-                                    <FontAwesome name="circle" size={18} color="#FFBA00" /> 448 g cooking oil
+                                    <FontAwesome name="circle" size={18} color="#FFBA00" /> 14 g butter
                                 </Text>
                             </View>
 
@@ -101,37 +131,37 @@ const Lumpiang_Shanghai = ({ navigation }) => {
                                 <View style={recipeStyles.stepContainer}>
                                     <Text style={recipeStyles.stepNumber}>1</Text>
                                     <Text style={recipeStyles.stepText}>
-                                        Combine ground pork, carrot, onion, and parsley in a bowl. Mic well.
+                                        In a pot over medium heat, combine pork ribs, soy sauce, vinegar, sugar, garlic, peppercorns, and bay leaves. Bring to a boil, skimming scum that may float on top.
                                     </Text>
                                 </View>
                                 <View style={recipeStyles.stepContainer}>
                                     <Text style={recipeStyles.stepNumber}>2</Text>
                                     <Text style={recipeStyles.stepText}>
-                                        Add egg, ground black pepper, salt, garlic, powder, and Sesame oil. Continue to mix until the ingredients are well blended.
+                                        Lower heat, cover, and continue to cook for about 1 to 1-½ hours or until ribs are fork-tender. Remove ribs from pot and set aside.
                                     </Text>
                                 </View>
                                 <View style={recipeStyles.stepContainer}>
                                     <Text style={recipeStyles.stepNumber}>3</Text>
                                     <Text style={recipeStyles.stepText}>
-                                        Crush the Knorr pork cube and add it into the mixture. Blend the ingredients altogether completely.
+                                        Add bread crumbs, honey, and butter to the adobo sauce and simmer for about 5 minutes.
                                     </Text>
                                 </View>
                                 <View style={recipeStyles.stepContainer}>
                                     <Text style={recipeStyles.stepNumber}>4</Text>
                                     <Text style={recipeStyles.stepText}>
-                                        Put 1 to 1 1/2 tablespoons of meat mixture over a piece of lumpia wrapper. Wrap and roll to secure the mixture. Continue this step until the mixture is completely consumed. Note: watch the video below to see how.
+                                        Spread bread mixture on the ribs and arrange the ribs in a single layer on a baking sheet.
                                     </Text>
                                 </View>
                                 <View style={recipeStyles.stepContainer}>
                                     <Text style={recipeStyles.stepNumber}>5</Text>
                                     <Text style={recipeStyles.stepText}>
-                                        Heat oil in a cooking pot in low to medium heat. Deep fry the lumpia until it turns golden brown. Remove from the pot and place in a plate lined with paper towel.
+                                        Bake in a 375 F oven for 10 to 15 minutes or until lightly caramelized.
                                     </Text>
                                 </View>
                                 <View style={recipeStyles.stepContainer}>
-                                    <Text style={recipeStyles.stepNumber}>6</Text>
+                                    <Text style={recipeStyles.stepNumber}>7</Text>
                                     <Text style={recipeStyles.stepText}>
-                                        Transfer to a serving plate. Serve with sweet and sour sauce. Share and enjoy!
+                                        Serve hot. Share and enjoy!
                                     </Text>
                                 </View>
                             </View>
@@ -143,4 +173,4 @@ const Lumpiang_Shanghai = ({ navigation }) => {
     );
 };
 
-export default Lumpiang_Shanghai;
+export default BabyBackRibs;

@@ -56,6 +56,16 @@ const recipeStyles = StyleSheet.create({
         borderRadius: 150,
         overflow: 'hidden',
         marginTop: 15,
+        borderWidth: 4,
+        borderColor: 'black',
+        // Android shadow
+        elevation: 8,
+
+        // iOS shadow
+        shadowColor: 'black',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.5,
+        shadowRadius: 4,
     },
     recipeImage: {
         width: 272,
@@ -89,8 +99,8 @@ const recipeStyles = StyleSheet.create({
         shadowRadius: 3,
     },
     detailsContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
+        // flexDirection: 'row',
+        // justifyContent: 'space-between',
         padding: 20,
         marginBottom: 10,
     },
@@ -105,6 +115,21 @@ const recipeStyles = StyleSheet.create({
     },
     detailText: {
         color: '#FFBA00',
+        fontSize: 16,
+        fontFamily: 'Poppins_600SemiBold',
+    },
+    detailTextBelowImage: {
+        textAlign: 'center',
+        color: '#FFBA00',
+        fontSize: 16,
+        fontFamily: 'Poppins_600SemiBold',
+    },
+    addedByModifContainer: {
+        marginTop: 20,
+    },
+    detailTextBelowList: {
+        textAlign: 'left',
+        color: 'black',
         fontSize: 16,
         fontFamily: 'Poppins_600SemiBold',
     },
@@ -125,7 +150,7 @@ const recipeStyles = StyleSheet.create({
     },
     stepContainer: {
         flexDirection: 'row',
-        alignItems: 'center',
+        // alignItems: 'center',
         marginBottom: 10,
     },
     stepNumber: {
@@ -138,7 +163,6 @@ const recipeStyles = StyleSheet.create({
         padding: 10,
         width: 40,
         height: 40,
-        justifyContent: 'center',
         textAlign: 'center',
         // Android shadow
         elevation: 5,
@@ -151,7 +175,7 @@ const recipeStyles = StyleSheet.create({
     },
     stepText: {
         flex: 1,
-        fontSize: 18,
+        fontSize: 16,
         fontFamily: 'Poppins_600SemiBold',
         textAlign: 'justify',
     },
@@ -160,6 +184,52 @@ const recipeStyles = StyleSheet.create({
     },
     saucebg: {
         color: 'white',
+    },
+
+    tableRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    tableCell: {
+        fontSize: 16,
+        fontFamily: 'Poppins_600SemiBold',
+        color: 'black',
+        textAlign: 'left',
+        verticalAlign: 'middle',
+        padding: 10,
+        // borderWidth: 1,
+
+    },
+    tableCellColumn: {
+        fontFamily: 'Poppins_600SemiBold',
+        fontSize: 20,
+        textAlign: 'center',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 0,
+        color: '#FFBA00',
+        borderWidth: 1,
+        verticalAlign: 'middle',
+        backgroundColor: '#0C3B2E',
+        borderTopLeftRadius: 10,
+        padding: 15,
+    },
+    tableCellColumn2: {
+        fontFamily: 'Poppins_600SemiBold',
+        fontSize: 20,
+        textAlign: 'center',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 0,
+        color: '#FFBA00',
+        borderWidth: 1,
+        verticalAlign: 'middle',
+        backgroundColor: '#0C3B2E',
+        padding: 15,
+        borderTopRightRadius: 10,
     },
 });
 

@@ -8,7 +8,7 @@ const menuStyles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        justifyContent: 'center',
+        // justifyContent: 'center',
         alignItems: 'center',
         padding: 20,
         marginBottom: 20,
@@ -72,10 +72,12 @@ const menuStyles = StyleSheet.create({
         marginBottom: 30,
     },
     profilePic: {
-        width: 130,
-        height: 130,
+        width: 160,
+        height: 160,
         borderRadius: 80,
         marginBottom: 10,
+        borderWidth: 3,
+        borderColor: 'black',
     },
     name: {
         fontSize: 22,
@@ -100,7 +102,7 @@ const menuStyles = StyleSheet.create({
         justifyContent: 'space-between',
         borderWidth: 0,
         width: '100%',
-        marginTop: 18,
+        marginTop: 20,
         padding: 15,
         borderRadius: 14,
         backgroundColor: 'white',

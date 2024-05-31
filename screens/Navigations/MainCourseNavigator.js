@@ -1,3 +1,5 @@
+// AllMainCourseScreen.js
+
 import * as React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
@@ -7,16 +9,11 @@ import BabyBackRibs from "../RECIPE SCREENS/MAIN/3-Baby_Back_Ribs";
 import RenelManok from "../RECIPE SCREENS/MAIN/4-Rellenong_Manok";
 import GrilledTuna from "../RECIPE SCREENS/MAIN/5-Grilled_Tuna _Belly";
 
-// Import Recipe Screens
-
-
-
 const Stack = createNativeStackNavigator();
 
 const AllMainCourseScreen = () => {
     return (
         <Stack.Navigator>
-
             <Stack.Screen
                 name="Baby Back Ribs"
                 component={BabyBackRibs}

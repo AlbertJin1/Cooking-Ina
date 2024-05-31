@@ -57,11 +57,13 @@ const userProfileStyles = StyleSheet.create({
         marginTop: 0,
     },
     profilePic: {
-        width: 150,
-        height: 150,
-        borderRadius: 75,
+        width: 160,
+        height: 160,
+        borderRadius: 80,
         marginBottom: 10,
         alignSelf: 'center',
+        borderWidth: 3,
+        borderColor: 'black',
     },
     statusText: {
         fontSize: 16,

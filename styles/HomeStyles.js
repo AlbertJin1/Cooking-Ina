@@ -36,10 +36,10 @@ const homeStyles = StyleSheet.create({
     },
     categoriesTitle: {
         fontSize: 20,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        width: '80%',
+        // flexDirection: 'column',
+        // justifyContent: 'space-between',
+        alignItems: 'flex-start',
+        width: '100%',
         fontFamily: 'Poppins_600SemiBold'
     },
     recommendedRecipesTitle: {
@@ -69,9 +69,8 @@ const homeStyles = StyleSheet.create({
         marginTop: 10,
     },
     recommendedRecipesContainer: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
+        // justifyContent: 'flex-start',
+        alignItems: 'flex-start',
         marginBottom: 10,
     },
     categoryButton: {
