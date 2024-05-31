@@ -32,7 +32,7 @@ const Ronimaca = ({ navigation }) => {
                                     <Image source={require('../../img/recipes/macaroni.jpg')} style={recipeStyles.recipeImage} />
                                 </View>
                             </View>
-                            <View style={recipeStyles.detailsContainer}>
+                            <View style={recipeStyles.detailsContainerStatic}>
                                 <View style={recipeStyles.detailItem}>
                                     <Ionicons name="time-outline" style={recipeStyles.detailIcon} />
                                     <Text style={recipeStyles.detailText}>20 mins</Text>

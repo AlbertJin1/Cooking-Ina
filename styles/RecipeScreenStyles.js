@@ -104,6 +104,12 @@ const recipeStyles = StyleSheet.create({
         padding: 20,
         marginBottom: 10,
     },
+    detailsContainerStatic: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        padding: 20,
+        marginBottom: 10,
+    },
     detailItem: {
         flexDirection: 'row',
         alignItems: 'center',

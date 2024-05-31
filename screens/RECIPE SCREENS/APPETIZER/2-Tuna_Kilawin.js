@@ -25,7 +25,7 @@ const Tuna_Kilawin = ({ navigation }) => {
                                     <Image source={require('../../../img/category-recipe/APPETIZER/Tuna-Kilawin.png')} style={recipeStyles.recipeImage} />
                                 </View>
                             </View>
-                            <View style={recipeStyles.detailsContainer}>
+                            <View style={recipeStyles.detailsContainerStatic}>
                                 <View style={recipeStyles.detailItem}>
                                     <Ionicons name="time-outline" style={recipeStyles.detailIcon} />
                                     <Text style={recipeStyles.detailText}>1 hour and 1 min</Text>

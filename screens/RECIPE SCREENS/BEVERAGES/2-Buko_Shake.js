@@ -25,7 +25,7 @@ const Buko_Shake = ({ navigation }) => {
                                     <Image source={require('../../../img/category-recipe/BEVERAGE/BukoShake.png')} style={recipeStyles.recipeImage} />
                                 </View>
                             </View>
-                            <View style={recipeStyles.detailsContainer}>
+                            <View style={recipeStyles.detailsContainerStatic}>
                                 <View style={recipeStyles.detailItem}>
                                     <Ionicons name="time-outline" style={recipeStyles.detailIcon} />
                                     <Text style={recipeStyles.detailText}>10 mins</Text>

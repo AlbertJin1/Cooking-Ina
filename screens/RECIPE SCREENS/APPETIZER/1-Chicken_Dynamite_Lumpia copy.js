@@ -31,7 +31,7 @@ const Chicken_Dynamite_Lumpia = ({ navigation }) => {
                                     <Image source={require('../../../img/category-recipe/APPETIZER/Dynamite.png')} style={recipeStyles.recipeImage} />
                                 </View>
                             </View>
-                            <View style={recipeStyles.detailsContainer}>
+                            <View style={recipeStyles.detailsContainerStatic}>
                                 <View style={recipeStyles.detailItem}>
                                     <Ionicons name="time-outline" style={recipeStyles.detailIcon} />
                                     <Text style={recipeStyles.detailText}>28 mins</Text>

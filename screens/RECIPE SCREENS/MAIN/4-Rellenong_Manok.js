@@ -32,7 +32,7 @@ const RenelManok = ({ navigation }) => {
                                     <Image source={require('../../../img/category-recipe/MAIN/RellenongManok.png')} style={recipeStyles.recipeImage} />
                                 </View>
                             </View>
-                            <View style={recipeStyles.detailsContainer}>
+                            <View style={recipeStyles.detailsContainerStatic}>
                                 <View style={recipeStyles.detailItem}>
                                     <Ionicons name="time-outline" style={recipeStyles.detailIcon} />
                                     <Text style={recipeStyles.detailText}>1 hr</Text>
