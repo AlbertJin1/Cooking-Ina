@@ -5,6 +5,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import { getStorage, ref, getDownloadURL } from 'firebase/storage';
 import recipeStyles from '../styles/RecipeScreenStyles';
+import LoadingScreen from './LoadingScreen';
 
 const RecipeTemplate = () => {
     const navigation = useNavigation();
@@ -47,7 +48,7 @@ const RecipeTemplate = () => {
     }, [recipeId, recipeCategory]);
 
     if (loading) {
-        return <Text>Loading...</Text>;
+        return <LoadingScreen />; // Render the LoadingScreen component while loading
     }
 
     if (error) {
